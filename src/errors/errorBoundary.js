@@ -1,5 +1,5 @@
 import React from "react";
-import {StoreContext} from "../../context/Store";
+import {StoreContext} from "../context/Store";
 
 export default class ErrorBoundary extends React.Component {
     static contextType = StoreContext;

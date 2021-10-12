@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import WizardTopMenu from "../wizard/topMenu";
+import WizardTopMenu from "../menus/topMenu";
 import {withRouter} from "react-router";
 
 class InnerSection extends Component {
