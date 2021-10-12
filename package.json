@@ -1,7 +1,11 @@
 {
-  "name": "Frontend Core",
+  "name": "Frontend-Core",
   "version": "1.0.0-alpha",
   "private": true,
+  "author": {
+    "name": "Panos Politopoulos",
+    "email": "panospolis@gmail.com",
+  },
   "proxy": "http://localhost:5000",
   "devDependencies": {
     "@babel/core": "7.14.6",
