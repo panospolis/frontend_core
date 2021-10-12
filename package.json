@@ -4,7 +4,7 @@
   "private": true,
   "author": {
     "name": "Panos Politopoulos",
-    "email": "panospolis@gmail.com",
+    "email": "panospolis@gmail.com"
   },
   "proxy": "http://localhost:5000",
   "devDependencies": {
