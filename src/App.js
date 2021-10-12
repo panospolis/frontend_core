@@ -8,7 +8,7 @@ import {bootStrap} from './bootStrap';
 import Header from './components/layout/header'
 import Footer from './components/layout/footer'
 import ModalContainer from "./components/ui/modalContainer";
-import ErrorBoundary from "./components/errors/errorBoundary";
+import ErrorBoundary from "./errors/errorBoundary";
 
 
 class App extends Component {
