@@ -1,25 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from "react";
+import {BrowserRouter} from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import {StoreContext} from "./context/Store";
+import Layout from "./components/layout/layout";
+import Routes from "./routes/route"
+import {bootStrap} from './bootStrap';
+import Header from './components/layout/header'
+import Footer from './components/layout/footer'
+import ModalContainer from "./components/ui/modalContainer";
+import ErrorBoundary from "./components/errors/errorBoundary";
+
+
+class App extends Component {
+  storesLoaded = false;
+  stores = null;
+
+  constructor(props) {
+    super(props);
+    this.state = {loading: false}
+  }
+
+  async componentDidMount() {
+    this.storesLoaded = false
+    await bootStrap.init();
+    this.stores = {
+      rootStore: bootStrap
+    };
+    this.setState({loading: true});
+  }
+
+  render() {
+    return <div>
+      {this.state.loading && <StoreContext.Provider value={this.stores}>
+        <BrowserRouter>
+          <ErrorBoundary>
+            <Header></Header>
+          </ErrorBoundary>
+          <Layout>
+            <Routes></Routes>
+          </Layout>
+          <ErrorBoundary>
+            <Footer></Footer>
+          </ErrorBoundary>
+          <ModalContainer></ModalContainer>
+        </BrowserRouter>
+      </StoreContext.Provider>}
     </div>
-  );
+
+  }
 }
+
 
 export default App;
