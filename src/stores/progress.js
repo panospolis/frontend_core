@@ -72,12 +72,12 @@ export default class ProgressStore {
 
         if (!progress || (progress && !some)) {
             const result = await this.rootStore.CsStore.addProgressStep({
-                'sage': item,
+                'app': item,
                 'section': section,
                 'sub_section': sub_section
             })
 
-            if (result && result.data.sage == item) {
+            if (result && result.data.app == item) {
                 const {section, sub_section, id} = result.data;
                 runInAction(() => {
                     if(!this.progress[item]){
@@ -126,7 +126,7 @@ export default class ProgressStore {
     setProgressToArray(progress) {
         for(const pro of progress){
             const section = parseInt(pro.section);
-            const id = parseInt(pro.sage);
+            const id = parseInt(pro.app);
             const sub_section = pro.sub_section;
 
             if(this.progress[id]){
@@ -140,10 +140,10 @@ export default class ProgressStore {
     }
 
     async deleteProgress(progress_id){
-        const sageId = this.rootStore.UIStore.getSageId();
-        const last = this.lastProgressStep(sageId)
+        const appId = this.rootStore.UIStore.getAppId();
+        const last = this.lastProgressStep(appId)
         if(last > progress_id) {
-            await this.rootStore.CsStore.deleteProgress(sageId, this.sectionId);
+            await this.rootStore.CsStore.deleteProgress(appId, this.sectionId);
             console.log('stop')
         }
     }

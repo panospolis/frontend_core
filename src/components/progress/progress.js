@@ -16,13 +16,13 @@ import TopMenu from "../menus/topMenu";
 export default class Progress extends Component {
     static contextType = StoreContext
     show = false;
-    sageId = null;
+    appId = null;
 
     constructor(props) {
         super(props);
         makeObservable(this, {
             show: observable,
-            sageId: observable
+            appId: observable
         });
     }
 
@@ -31,21 +31,21 @@ export default class Progress extends Component {
      * and retrieve it
      * @returns {Promise<void>}
      */
-    async retrieveSageId() {
+    async retrieveAppId() {
         const {id} = this.props.match.params;
         const {UIStore} = this.context.rootStore;
-        const sageId = await UIStore.setSageId(id);
+        const appId = await UIStore.setAppId(id);
 
-        if (sageId) {
+        if (appId) {
             runInAction(() => {
                 this.show = true;
-                this.sageId = sageId;
+                this.appId = appId;
             })
         }
     }
 
     async componentDidMount() {
-        await this.retrieveSageId();
+        await this.retrieveAppId();
     }
 
     /**
@@ -54,7 +54,7 @@ export default class Progress extends Component {
      */
     showBody() {
         const {ProgressStore, UIStore} = this.context.rootStore;
-        let id = UIStore.getSageId();
+        let id = UIStore.getAppId();
 
         const access = ProgressStore.permissionForCurrentSection(id, this.props.step);
 

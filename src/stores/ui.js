@@ -109,29 +109,29 @@ export default class UIStore {
         return this.language;
     }
 
-    setSageIdFromRecord(record) {
+    setAppIdFromRecord(record) {
         this.app.id = record.id;
         this.app.language = record.language;
     }
 
-    async setSageId(id) {
+    async setAppId(id) {
         if (this.app.id === null || (this.app.id && this.app.id !== id)) {
-            const model = await this.rootStore.CsStore.getSageDataById(id)
+            const model = await this.rootStore.CsStore.getAppDataById(id)
             if (model) {
                 this.app.id = model.id;
                 this.app.language = model.language;
                 return this.app.id
             }
         } else {
-            return this.getSageId();
+            return this.getAppId();
         }
     }
 
-    getSageId() {
+    getAppId() {
         return this.app.id;
     }
 
-    getSageLanguageId() {
+    getAppLanguageId() {
         return this.app.language;
     }
 

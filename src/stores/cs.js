@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import axios from "axios";
 import Cookies from 'universal-cookie';
-import RootStore from "./root";
-import {loader, principles, baseSections, topPrinciples} from "../decorators/ui"
+import {loader} from "../decorators/ui"
 import ErrorModal from "../components/ui/modals/errorModal";
 import qs from 'qs';
 
@@ -36,7 +35,7 @@ export default class CsStore {
 
     async onErrorThrowModal(e) {
         const {Logger, UIStore} = this.rootStore;
-        UIStore.sModal(<ErrorModal message={'Something went wrong while retrieving data'}></ErrorModal>, "error");
+        UIStore.sModal(<ErrorModal message={gettext('Something went wrong while retrieving data')}></ErrorModal>, "error");
         Logger.error({message: e.message, stack: e.stack});
 
         return null;
@@ -46,7 +45,7 @@ export default class CsStore {
         const options = {
             method: 'POST',
             headers: {...this.formHeaders()},
-            url: `${this.rootStore.config.app_name}/current/language/`
+            url: `/${this.rootStore.config.app_name}/current/language/`
         };
         const language = await axios(options);
 
@@ -61,7 +60,7 @@ export default class CsStore {
                 method: 'POST',
                 headers: {...this.formHeaders()},
                 data: qs.stringify({'language': lang}),
-                url: `${this.rootStore.config.app_name}/i18n/setlang/`
+                url: `/${this.rootStore.config.app_name}/i18n/setlang/`
             };
             language = await axios(options);
 

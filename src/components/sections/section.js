@@ -48,13 +48,13 @@ export default class Section extends React.Component {
     }
 
     async saveStep() {
-        const id = this.context.rootStore.UIStore.getSageId();
+        const id = this.context.rootStore.UIStore.getAppId();
         return await this.context.rootStore.ProgressStore.setProgressSection(id, this.nextSection, null);
     }
 
 
     checkProgress() {
-        const id = this.context.rootStore.UIStore.getSageId();
+        const id = this.context.rootStore.UIStore.getAppId();
         const progressRecords = this.context.rootStore.ProgressStore.getProgressPerSection(id);
 
         const allSectionsCompleted = progressRecords?.some(record => record.section === this.nextSection)

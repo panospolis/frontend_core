@@ -18,14 +18,14 @@ export default class WizardMenu extends Component {
 
     chekProgress() {
         const {UIStore} = this.context.rootStore;
-        const id = UIStore.getSageId();
+        const id = UIStore.getAppId();
         return this.context.rootStore.ProgressStore.getProgressPerSection(id)
     }
 
     populateMenu() {
         const menu = [];
         const {ProgressStore, UIStore} = this.context.rootStore;
-        const id = UIStore.getSageId();
+        const id = UIStore.getAppId();
 
         const steps = ProgressStore.getProgressPerSection(id)
         if(!steps?.length){

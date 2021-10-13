@@ -37,7 +37,7 @@ export default class List extends Section {
     }
 
     async getData(parameters) {
-        return this.context.rootStore.CsStore.getSageData(parameters);
+        return this.context.rootStore.CsStore.getAppData(parameters);
     }
 
     queryString(queryString = '') {

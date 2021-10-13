@@ -8,53 +8,42 @@ import {NavLink} from "react-router-dom";
 export default class TopMenu extends Component {
     static contextType = StoreContext
     actorsList = {};
-    sageId = null;
-
-    constructor(props) {
-        super(props);
-
-    }
+    appId = null;
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         return nextProps.location.pathname !== this.props.location.pathname;
     }
 
     render() {
-        const {UIStore} = this.context.rootStore;
-        const sage = UIStore.getSageId();
-        const progress = this.context.rootStore.ProgressStore.lastProgressStep(sage);
+        const {UIStore, config} = this.context.rootStore;
+        const app = UIStore.getAppId();
+        const progress = this.context.rootStore.ProgressStore.lastProgressStep(app);
 
         let activeMenu = "active bg-primary";
         let activeMenuTwo = 'bg-dark';
-        if(progress > 9){
+        if(progress > config.topMenu.phase.two.id){
             activeMenuTwo = "bg-success"
-        } else if(progress  > 5){
+        } else if(progress  > config.topMenu.phase.one.id){
             activeMenuTwo = "bg-secondary"
         }
 
         if(this.props.location.pathname.includes("two")){
             activeMenuTwo = "active bg-primary";
-            if(progress < 5){
+            if(progress < config.topMenu.phase.one.id){
                 activeMenu = "bg-secondary";
             }else {
                 activeMenu = "bg-success";
             }
         }
-        if(this.props.location.pathname.includes("assessment/report")) {
-            if (progress === 11) {
-                activeMenu = "bg-success";
-                activeMenuTwo = "bg-success";
-            }
-        }
 
         return <nav className="menu">
             <NavLink activeClassName={activeMenu} className={"menu text-decoration-none text-white "+activeMenu}
-                     to={`/sage/${sage}/site/profile/1/`}>
-                PHASE I
+                     to={config.topMenu.phase.one.url}>
+                {config.topMenu.phase.one.label}
             </NavLink>
             <NavLink activeClassName={activeMenuTwo} className={"menu text-decoration-none text-white "+activeMenuTwo}
-                     to={`/sage/${sage}/two/actor/questions/`}>
-                PHASE 2
+                     to={config.topMenu.phase.two.id}>
+                {config.topMenu.phase.two.label}
             </NavLink>
         </nav>
     }

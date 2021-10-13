@@ -91,21 +91,21 @@ export default class ChartsStores {
         return data;
     }
 
-    async collectDataForCharts(sage_id){
+    async collectDataForCharts(app_id){
         const {PhaseTwoStore} = this.rootStore;
         const totalAnswers =[];
-        const actors = await PhaseTwoStore.getActors(sage_id);
+        const actors = await PhaseTwoStore.getActors(app_id);
         let keys = 10;
         for (const actor of actors) {
             keys++;
-            const answersList = await this.retrieveAnswersByActors(sage_id, actor.id)
+            const answersList = await this.retrieveAnswersByActors(app_id, actor.id)
             totalAnswers[actor.id] = answersList;
         }
 
-        const faAnswers = await this.retrieveFacilitatorComments(sage_id)
+        const faAnswers = await this.retrieveFacilitatorComments(app_id)
 
 
-        return await this.answersPerQuestion(sage_id, totalAnswers);
+        return await this.answersPerQuestion(app_id, totalAnswers);
     }
 
 
