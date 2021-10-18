@@ -54,7 +54,7 @@ export default class ProgressStore {
     async setProgressSection(item, section, sub_section = null) {
         const progress = this.getProgressPerSection(item);
 
-        const some = progress.some(pro => {
+        const some = progress?.some(pro => {
                 let exist = false;
                 if(parseInt(pro.section) === parseInt(section)){
                     exist = true;
@@ -68,7 +68,7 @@ export default class ProgressStore {
                 }
                 return exist;
             }
-        );
+        ) || false;
 
         if (!progress || (progress && !some)) {
             const result = await this.rootStore.CsStore.addProgressStep({
@@ -150,7 +150,7 @@ export default class ProgressStore {
 
     /**
      * get all progress records
-     * @returns {Promise<void>}
+     * @returns Array
      */
     async getAllProgressData() {
         const progress = await this.rootStore.CsStore.getAllProgress();

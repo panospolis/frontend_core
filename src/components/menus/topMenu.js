@@ -42,7 +42,7 @@ export default class TopMenu extends Component {
                 {config.topMenu.phase.one.label}
             </NavLink>
             <NavLink activeClassName={activeMenuTwo} className={"menu text-decoration-none text-white "+activeMenuTwo}
-                     to={config.topMenu.phase.two.id}>
+                     to={config.topMenu.phase.two.url}>
                 {config.topMenu.phase.two.label}
             </NavLink>
         </nav>

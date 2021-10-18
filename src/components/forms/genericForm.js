@@ -185,6 +185,7 @@ export default class GenericForm extends Component {
             <Formik className={"bg-light"} innerRef={(p) => (this.context.rootStore.UIStore.formik = p)}
                     initialValues={{...this.getInitialValues()}}
                     validate={(values) => this.validateForm(values)}
+                    enableReinitialize={true}
                     onSubmit={(values, actions) => this.submitForm(values, actions)
                     }
             >

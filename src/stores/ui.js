@@ -1,7 +1,6 @@
 import {makeObservable, observable, runInAction} from "mobx";
 import React from "react";
 import ErrorModal from "../components/ui/modals/errorModal";
-import ConfirmationModal from "../components/ui/modals/confirmationModal";
 
 export default class UIStore {
     language = null;
@@ -13,7 +12,9 @@ export default class UIStore {
     triggerModal = false;
     modal = {
         body: null,
-        type: null
+        type: null,
+        onClose: () => {
+        }
     };
     formik = {};
     months = {
@@ -55,7 +56,7 @@ export default class UIStore {
         }, 60 * 10 * 100)
     }
 
-    sModal(modal, type = '', styles = '') {
+    sModal(modal, type = '', styles = '', onClose = () => {}) {
         if(this.modal.type !== "error") {
             if (this.modal.body) {
                 this.closeModal();
@@ -63,10 +64,15 @@ export default class UIStore {
             this.modal.body = modal;
             this.modal.type = type;
             this.modal.styles = styles;
+            this.modal.onClose = onClose;
             runInAction(() => {
                 this.triggerModal = true;
             });
         }
+    }
+
+    isModalForm(){
+        return this.modal.type === 'form';
     }
 
     modalIsActive() {
@@ -165,6 +171,7 @@ export default class UIStore {
     goToNextSection(path, history){
         history.push(path[0].url.replace('id',this.app.id))
     }
+
 
 
 }

@@ -62,7 +62,7 @@ export default class Progress extends Component {
     }
 
     render() {
-        if (!this.show || !this.sageId) {
+        if (!this.show || !this.appId) {
             return null;
         }
 

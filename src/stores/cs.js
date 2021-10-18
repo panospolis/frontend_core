@@ -224,4 +224,27 @@ export default class CsStore {
 
         return data.data
     }
+
+    /**
+     *
+     * @param id
+     * @returns {Promise<null|null>}
+     */
+    @loader
+    async getAppDataById(id = null) {
+        let data = {data: null};
+
+        try {
+            data = await axios.get(`${this.url}/${this.rootStore.config.app_name}/${id}/`, {
+                headers: {
+                    ...this.formHeaders(),
+                },
+
+            });
+        } catch (e) {
+            return this.onErrorThrowModal(e);
+        }
+
+        return data.data
+    }
 }

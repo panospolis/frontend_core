@@ -8,8 +8,7 @@ import {observer} from "mobx-react";
 /**
  * Class of Main section where you can see the list of all records, order them, delete them and proceed to next section
  */
-@withRouter
-@observer
+
 export default class Maim extends List {
     progressButton = [];
 
@@ -69,7 +68,30 @@ export default class Maim extends List {
      * @param record
      */
     actions(record) {
-        throw new Error('Implement actions function');
+        const {config, ProgressStore, UIStore} = this.context.rootStore;
+        const last = ProgressStore.lastProgressStep(record.id);
+        //const last = progress.shift();
+        let currentStep = config.Sections["PhaseOne"].filter(section => section.id === last);
+
+        if (currentStep.length === 0) {
+            currentStep = config.Sections["PhaseTwo"].filter(section => section.id === last);
+        }
+        if (currentStep.length === 0) {
+            currentStep = config.Sections["PhaseOne"].filter(section => section.id === 1);
+        }
+        UIStore.setAppIdFromRecord(record);
+
+        if (currentStep.length > 0 && currentStep[0]['id'] === 11) {
+            currentStep = config.Sections["Assessment"];
+        }
+
+        return <div>
+            {currentStep.length && <button className="btn btn-info" onClick={() => {
+                this.nextStep(record.id, currentStep[0].url.replace('id', record.id), 1)
+            }}>
+                {gettext('Proceed to')} {currentStep[0]['label']}
+            </button>}
+        </div>
     }
 
 

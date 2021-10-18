@@ -7,12 +7,17 @@ import BaseMultipleFields from "./baseMultipleFields";
 
 @observer
 export default class MultipleFields extends BaseMultipleFields {
+    defaultFields = ["_women", "_men"];
 
     componentDidMount() {
-        const keyName = this.props.name.replace('_women', '').replace('_men', '')
+        let name = this.props.name;
+        this.defaultFields.forEach(value => {
+            name = name.replace(value, '');
+        });
+        const keyName = name;
         if (this.props.values?.[keyName]?.length) {
             this.props.values[keyName].forEach(value => {
-                if (value.types && ["_women", "_men"].includes(`_${value.types}`)) {
+                if (value.types && this.defaultFields.includes(`_${value.types}`)) {
                     if (this.props.name.includes(`_${value.types}`)) {
                         this.addField({}, value.value)
                     }

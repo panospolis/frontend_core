@@ -29,11 +29,22 @@ export default class List extends Section {
 
     }
 
-    async componentDidMount() {
+    async refreshListAfterSubmission() {
+        await this.getDataAndRender();
+        if (this.list.count) {
+            await this.completeTheStep();
+        }
+    }
+
+    async getDataAndRender(){
         const data = await this.getData();
         runInAction(() => {
             this.list = data;
         })
+    }
+
+    async componentDidMount() {
+        await this.getDataAndRender();
     }
 
     async getData(parameters) {
