@@ -1,5 +1,6 @@
 import React from "react";
 import {StoreContext} from "../context/Store";
+import ErrorModal from "../components/ui/modals/errorModal";
 
 export default class ErrorBoundary extends React.Component {
     static contextType = StoreContext;
@@ -14,7 +15,7 @@ export default class ErrorBoundary extends React.Component {
         const {Logger, UIStore} = this.context.rootStore;
         window.onerror = (msg, url, line) => {
             Logger.error({"message": `Caught[via window.onerror]: ${msg} from: ${url} line: ${line}`, "stack": ""});
-            // UIStore.sModal(<ErrorModal message={gettext('Something went wrong')}></ErrorModal>)
+            UIStore.sModal(<ErrorModal message={gettext('Something went wrong')}></ErrorModal>)
             return true;
         };
 

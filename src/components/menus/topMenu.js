@@ -38,11 +38,11 @@ export default class TopMenu extends Component {
 
         return <nav className="menu">
             <NavLink activeClassName={activeMenu} className={"menu text-decoration-none text-white "+activeMenu}
-                     to={config.topMenu.phase.one.url}>
+                     to={config.topMenu.phase.one.url.replace('id',app)}>
                 {config.topMenu.phase.one.label}
             </NavLink>
             <NavLink activeClassName={activeMenuTwo} className={"menu text-decoration-none text-white "+activeMenuTwo}
-                     to={config.topMenu.phase.two.url}>
+                     to={config.topMenu.phase.two.url.replace('id',app)}>
                 {config.topMenu.phase.two.label}
             </NavLink>
         </nav>

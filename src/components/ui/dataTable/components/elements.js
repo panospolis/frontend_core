@@ -1,8 +1,9 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
-import {StoreContext} from "../../../context/Store";
 import {observer} from 'mobx-react';
-import DeleteModal from "../../ui/modals/deleteModal";
+
+import DeleteModal from "../../modals/deleteModal";
+import {StoreContext} from "../../../../context/Store";
 
 @observer
 export default class Elements extends Component {

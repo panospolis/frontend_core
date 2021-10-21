@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import axios from "axios";
 import Cookies from 'universal-cookie';
 import {loader} from "../decorators/ui"
@@ -246,5 +246,27 @@ export default class CsStore {
         }
 
         return data.data
+    }
+
+    /***
+     * Site profile requests
+     * @returns {Promise<void>}
+     */
+    @loader
+    async getWdpa(parameters = null) {
+        let data = null;
+        try {
+            data = await axios.post(`${this.url}/wdpa/`, parameters, {
+
+                headers: {
+                    ...this.formHeaders(),
+                },
+
+            });
+        } catch (e) {
+            return this.onErrorThrowModal(e);
+        }
+
+        return data.data;
     }
 }
