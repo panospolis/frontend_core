@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
-import {makeObservable, observable, action, runInAction, autorun, computed} from "mobx"
+import {action, makeObservable, observable, runInAction} from "mobx"
 import {observer} from 'mobx-react';
 import Elements from "./components/Elements";
 import Columns from "./components/Columns";

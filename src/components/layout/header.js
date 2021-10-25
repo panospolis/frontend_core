@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import LanguageSelector from "../ui/languageSelector";
-import {
-    NavLink
-} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHome} from "@fortawesome/free-solid-svg-icons";
 import {StoreContext} from "../../context/Store";
@@ -16,7 +14,7 @@ class Header extends Component {
     }
 
     title(app_name){
-        return `${app_name}: ${this.context.rootStore.config.header.title}`
+        return `${app_name.toUpperCase()}: ${this.context.rootStore.config.header.title}`
     }
 
     render() {
