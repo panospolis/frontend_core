@@ -1,9 +1,7 @@
 import React from "react";
-import {withRouter} from "react-router";
 import List from "../list/list";
 import {NavLink} from "react-router-dom";
 import {runInAction} from "mobx";
-import {observer} from "mobx-react";
 
 /**
  * Class of Main section where you can see the list of all records, order them, delete them and proceed to next section
