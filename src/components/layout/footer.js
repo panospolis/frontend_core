@@ -1,9 +1,9 @@
 import React, {Component} from "react";
+import {StoreContext} from "../../context/Store";
 
 class Footer extends Component {
-    constructor(props) {
-        super(props);
-    }
+    static contextType = StoreContext
+
 
     render() {
         return <footer className="container-fluid mt-5">
