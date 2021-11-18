@@ -178,7 +178,7 @@ export default class UIStore {
     }
 
     getPhaseBySectionId(sectionId){
-        return this.rootStore.config.sections.find(p => p.id === sectionId && p.language === this.getLanguage()).phase_id
+        return this.rootStore.config.sections.find(p => p.section_id === sectionId && p.language === this.getLanguage()).phase_id
     }
 
     getSectionsByPhaseId(phaseId){

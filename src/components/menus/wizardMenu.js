@@ -31,11 +31,6 @@ export default class WizardMenu extends Component {
         }
         const lastItem = steps[steps.length-1];
 
-        let phase = 'PhaseOne';
-        if(this.props.phaseTwo){
-            phase='PhaseTwo';
-        }
-
         const phaseId = this.context.rootStore.UIStore.getPhaseBySectionId(this.props.step);
         const sections = this.context.rootStore.UIStore.getSectionsByPhaseId(phaseId);
 
@@ -43,13 +38,13 @@ export default class WizardMenu extends Component {
             sections.forEach((item, idx) => {
 
                 let className = "btn btn-circle-color btn-circle text-white";
-                if(parseInt(lastItem.section) === item.id && item.id < 9){
+                if(parseInt(lastItem.section) === item.section_id && item.id < 9){
                     className = "btn btn-secondary btn-circle text-white";
                 }
                 if (this.props.location.pathname.includes(item.url.replace('id', id))) {
                     className += " btn-selected";
                 }
-                const access = ProgressStore.permissionForCurrentSection(id, item.id);
+                const access = ProgressStore.permissionForCurrentSection(id, item.section_id);
                 const padding = idx === 0 ? "pl-3" : "pl-0";
                 if (!access) {
                     className = "btn btn-dark btn-circle text-white";

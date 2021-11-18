@@ -24,7 +24,7 @@ export default class TopMenu extends Component {
         let activeMenuTwo = 'bg-dark';
 
         return <nav className="menu">
-            {this.context.rootStore.config.phases.map(p => {
+            {this.context.rootStore.config.phases.filter(h => h.language === UIStore.getLanguage()).map(p => {
                 activeMenu = "";
                 const sections = p.section_id.split(',');
                 const first = sections.shift();
