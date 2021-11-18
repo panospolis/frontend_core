@@ -188,7 +188,7 @@ export default class UIStore {
     proceedToNextSection(id, history){
         const sections = this.rootStore.config.Sections;
         let path = this.rootStore.config.sections.find(section => {
-            return section.id == id;
+            return section.section_id == id;
         })
 
        if(path) {
