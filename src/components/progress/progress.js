@@ -69,7 +69,7 @@ export default class Progress extends Component {
         const stepTwo = this.props.step > 5;
 
         return <div className="container">
-            <TopMenu></TopMenu>
+            <TopMenu step={this.props.step}></TopMenu>
             <WizardMenu step={this.props.step} phaseTwo={stepTwo}></WizardMenu>
             <div className="row">
                 {this.showBody() && this.props.children}

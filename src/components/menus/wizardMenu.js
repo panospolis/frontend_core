@@ -1,7 +1,5 @@
 import React, {Component} from "react";
-import {
-    NavLink
-} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {withRouter} from "react-router";
 import {StoreContext} from "../../context/Store";
 import {observer} from "mobx-react";
@@ -38,15 +36,18 @@ export default class WizardMenu extends Component {
             phase='PhaseTwo';
         }
 
+        const phaseId = this.context.rootStore.UIStore.getPhaseBySectionId(this.props.step);
+        const sections = this.context.rootStore.UIStore.getSectionsByPhaseId(phaseId);
+
         if (steps) {
-            this.context.rootStore.config.Sections[phase].forEach((item, idx) => {
+            sections.forEach((item, idx) => {
 
                 let className = "btn btn-circle-color btn-circle text-white";
                 if(parseInt(lastItem.section) === item.id && item.id < 9){
                     className = "btn btn-secondary btn-circle text-white";
                 }
                 if (this.props.location.pathname.includes(item.url.replace('id', id))) {
-                    className = "btn btn-primary btn-circle text-white";
+                    className += " btn-selected";
                 }
                 const access = ProgressStore.permissionForCurrentSection(id, item.id);
                 const padding = idx === 0 ? "pl-3" : "pl-0";
@@ -72,7 +73,7 @@ export default class WizardMenu extends Component {
     }
 
     render() {
-        return <div className="row">
+        return <div className="row wizard-menu">
             {this.populateMenu()}
         </div>
     }

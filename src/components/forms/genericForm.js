@@ -1,10 +1,11 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
-import {Formik, Form} from 'formik';
+import {Form, Formik} from 'formik';
 import {NavLink} from "react-router-dom";
 
 import {StoreContext} from "../../context/Store";
 import {Spinner} from "../ui/spinner"
+import FormErrorMessage from "../ui/formMessages/errorMessage";
 
 export default class GenericForm extends Component {
     static contextType = StoreContext
@@ -114,12 +115,8 @@ export default class GenericForm extends Component {
      * @returns {JSX.Element}
      */
     errorMessage(msg = '') {
-        return <div key={msg} className="row d-flex justify-content-center mt-5  no-print">
-            <div className="col-7 mb-3 text-center">
-                <div className="alert form alert-danger" role="alert">
-                    {msg}
-                </div>
-            </div>
+        return <div key={msg} className={"row d-flex justify-content-center"}>
+            <div className={"col-7"}><FormErrorMessage message={msg}/></div>
         </div>
     }
 

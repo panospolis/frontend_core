@@ -6,15 +6,24 @@ import Elements from "./components/Elements";
 import Columns from "./components/Columns";
 import Filters from "./components/Filters";
 import Pagination from './components/Pagination'
+import InteractButton from "../interactButtons";
+import {faEdit, faPlus} from "@fortawesome/free-solid-svg-icons";
+import ContentModal from "../modals/contentModal";
+import {StoreContext} from "../../../context/Store";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import SuccessMessage from "../formMessages/successMessage";
 
 
 export default @observer
 class DataTable extends Component {
+    static contextType = StoreContext
 
     list = [];
     elements = {};
     filterFields = {};
     checkBoxes = [];
+    showMessage = false;
+    closeModalTimeout = null;
 
 
     parameters = {
@@ -29,7 +38,9 @@ class DataTable extends Component {
 
         makeObservable(this, {
             parameters: observable,
-            elements: observable
+            elements: observable,
+            list: observable,
+            showMessage: observable
         });
 
         this.filterBy = this.filterBy.bind(this);
@@ -41,24 +52,15 @@ class DataTable extends Component {
         this.getPage = this.getPage.bind(this);
         this.extraActions = this.extraActions.bind(this);
         this.delete = this.delete.bind(this);
-
+        this.showModal = this.showModal.bind(this);
     }
 
     @action
     async componentDidMount() {
         this.parameters.orderBy = this.props.config.fields[1].name;
         await this.sendRequest();
-        this.list = this.props.list
         this.labels = this.props.labels;
-        this.records = this.props.list.count;
 
-    }
-
-    @action
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        // if(prevProps.list.count !== this.props.list.count){
-        //    this.list =  this.props.list;
-        // }
     }
 
     @action
@@ -80,13 +82,18 @@ class DataTable extends Component {
     }
 
     async sendRequest() {
+        this.closeModalTimeout = null;
         const parameters = this.createFilterQuery();
 
-        const data = await this.props.refresh_data(parameters)
-        runInAction(() => {
-            this.list = data;
-            this.records = data?.count ?? 0;
-        });
+        const data = await this.props.refresh_data(parameters);
+        if (data) {
+            runInAction(() => {
+                this.list = data;
+                this.records = data?.count ?? 0;
+            });
+            return true;
+        }
+        return false;
     }
 
     async search() {
@@ -144,46 +151,95 @@ class DataTable extends Component {
     }
 
     extraActions(record) {
-        return this.props.extraActions(record);
+        return <div>
+            {this.props.allowEdit && <div className={"col m-1 no-print"}>
+                <button className={"btn btn-success mr-2"} type={"button"} id={record.id}
+                        onClick={() => this.showModal(record.id)}>
+                    <FontAwesomeIcon icon={faEdit}/>
+                </button>
+            </div>}
+            {this.props.extraActions(record)}
+        </div>
+    }
+
+    resetMessage() {
+        this.closeModalTimeout = setTimeout(() => {
+            runInAction(() => {
+                this.showMessage = false;
+            })
+        }, 3000)
+    }
+
+    showModal(id = null) {
+        const CreateComponent = this.props.createComponent;
+        this.context.rootStore.UIStore.sModal(<ContentModal><CreateComponent id={id} afterSubmission={async () => {
+            const success = await this.sendRequest();
+            if (success) {
+
+                runInAction(() => {
+                    this.showMessage = true;
+                })
+                this.resetMessage();
+            }
+            await this.props.afterCreateFunction?.()
+        }}/></ContentModal>, 'form', 'modal-xl');
     }
 
     render() {
-        if (!this.props.list?.results) {
+        if (!this.list?.results) {
             return null;
         }
 
         const totalPages = this.createPageRecords();
         return <div className="mt-3 col ">
+
             {this.props.showFilters && <Filters config={this.props.config} search={this.search} filterBy={this.filterBy}
-                     elements={this.elements}></Filters>}
+                                                elements={this.elements}></Filters>}
+            {this.showMessage && <div className={"row"}>
+                <div className={"col"}><SuccessMessage message={gettext('Record saved')}/></div>
+            </div>}
+            {this.props.createComponent && <div className={"row"}>
+                <div className="col text-right mb-1">
+                    <InteractButton css={"btn btn-success"} fn={this.showModal} icon={faPlus}
+                                    label={this.props.newItemLabel}/>
+                </div>
+            </div>}
             <div className="">
                 <table className="table table-striped table-bordered">
                     <thead>
                     <tr className=" table-active">
-                        <Columns config={this.props.config} parameters={this.parameters} setOrderBy={this.setOrderBy}></Columns>
-                        <th scope="col">Actions</th>
+                        <Columns config={this.props.config} parameters={this.parameters}
+                                 setOrderBy={this.setOrderBy}></Columns>
+                        <th scope="col" className={"no-print"}>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <Elements records={this.props.list.results} config={this.props.config}
+                    <Elements records={this.list.results} config={this.props.config}
                               extraActions={this.extraActions} actionDelete={this.delete}></Elements>
                     </tbody>
                 </table>
             </div>
-            {this.props.showPaging && <Pagination totalPages={totalPages} setPage={this.setPage} currentPage={this.getPage}></Pagination>}
+            {this.props.showPaging &&
+            <Pagination totalPages={totalPages} setPage={this.setPage} currentPage={this.getPage}></Pagination>}
         </div>
     }
+
 }
 
 DataTable.defaultProps = {
     showFilters: true,
-    showPaging: false
+    showPaging: false,
+    allowEdit: false
 }
 
-DataTable.propTypes = {
-    list: PropTypes.object,
-    extraActions: PropTypes.func,
-    delete: PropTypes.func,
-    showFilters: PropTypes.bool,
-    showPaging: PropTypes.bool
-}
+DataTable.propTypes =
+    {
+        extraActions: PropTypes.func,
+        delete: PropTypes.func,
+        showFilters: PropTypes.bool,
+        showPaging: PropTypes.bool,
+        createComponent: PropTypes.func,
+        newItemLabel: PropTypes.string,
+        allowEdit: PropTypes.bool,
+        afterCreateFunction: PropTypes.func
+    }
