@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
-import {StoreContext} from "../../../context/Store";
+import {StoreContext} from "../../../../context/Store";
 import {observer} from 'mobx-react';
 import DeleteModal from "../../modals/deleteModal";
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
@@ -36,7 +36,8 @@ export default class Elements extends Component {
             if (field.name === 'id') {
                 fields.push(<th scope="row" style={{width: field.width}} key={"field" + idx}>{record[field.name]}</th>)
             } else {
-                fields.push(<td key={"field" + idx} style={{width: field.width}}>{this.getValue(record[field.name])}</td>)
+                fields.push(<td key={"field" + idx}
+                                style={{width: field.width}}>{this.getValue(record[field.name], field.type)}</td>)
             }
         });
 

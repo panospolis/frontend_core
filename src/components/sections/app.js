@@ -124,7 +124,6 @@ export default class Maim extends List {
      * @returns {AppNAme|{datatable: {PageSize: number, fields: [{name: string, width: string, type: string}, {name: string, width: string, type: string}, {name: string, width: string, type: string}, {name: string, width: string, type: string}], labels: string[]}}|{datatable: {PageSize: number, fields: [{name: string, width: string, type: string}, {name: string, width: string, type: string}, {name: string, width: string, type: string}, {name: string, width: string, type: string}], labels: string[]}}|*}
      */
     getConfig() {
-        const {app_name} = this.context.rootStore.config;
-        return super.getConfig()[app_name];
+        return super.getConfig();
     }
 }

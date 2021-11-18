@@ -269,4 +269,23 @@ export default class CsStore {
 
         return data.data;
     }
+
+    /**
+     *
+     * @returns {Promise<null|null|*>}
+     */
+    @loader
+    async getGuidance(lang) {
+        let data = {data: null};
+        try {
+            data = await axios.get(`${this.url}/guidance/${lang}/`, {
+                headers: {
+                    ...this.formHeaders(),
+                },
+            });
+        } catch (e) {
+            return this.onErrorThrowModal(e);
+        }
+        return data.data
+    }
 }
