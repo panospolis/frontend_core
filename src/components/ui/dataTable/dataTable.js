@@ -214,7 +214,7 @@ class DataTable extends Component {
                     </tr>
                     </thead>
                     <tbody>
-                    <Elements records={this.list.results} config={this.props.config}
+                    <Elements allowDelete={this.props.allowDelete} records={this.list.results} config={this.props.config}
                               extraActions={this.extraActions} actionDelete={this.delete}/>
                     </tbody>
                 </table>
