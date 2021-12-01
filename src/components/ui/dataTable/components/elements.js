@@ -23,6 +23,8 @@ export default class Elements extends Component {
             return gettext('Yes')
         } else if (value === false || (type === 'boolean' && value === 0)) {
             return gettext('No')
+        } else if (type === 'object') {
+            return value.name
         }
 
         return value;
@@ -52,7 +54,6 @@ export default class Elements extends Component {
     }
 
     deleteAction(record) {
-        const deleteLabel = this.props.config.actionDelete ?? gettext('Delete')
         return <div className="col m-1 no-print">
             <InteractButton css={"btn btn-danger"} fn={this.onDelete} id={record.id} icon={faTrash}/>
         </div>
@@ -63,7 +64,7 @@ export default class Elements extends Component {
         return <td className={"no-print"}>
             <div className='container no-print'>
                 <div className="row">
-                    {this.deleteAction(record)}
+                    {this.props.allowDelete && this.deleteAction(record)}
                     {extraAction}
                 </div>
             </div>
@@ -89,8 +90,13 @@ export default class Elements extends Component {
 
 }
 
+Elements.defaultProps = {
+    allowDelete: true
+}
+
 Elements.propTypes = {
     records: PropTypes.array,
     config: PropTypes.object,
-    extraActions: PropTypes.func
+    extraActions: PropTypes.func,
+    allowDelete: PropTypes.bool
 }

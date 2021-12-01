@@ -21,14 +21,12 @@ export default class TopMenu extends Component {
         const progress = this.context.rootStore.ProgressStore.lastProgressStep(app);
 
         let activeMenu = "active bg-primary";
-        let activeMenuTwo = 'bg-dark';
 
         return <nav className="menu">
             {this.context.rootStore.config.phases.filter(h => h.language === UIStore.getLanguage()).map(p => {
                 activeMenu = "";
                 const sections = p.section_id.split(',');
                 const first = sections.shift();
-                const last = sections.pop();
 
                 if (first > progress) {
                     activeMenu = "bg-dark";
@@ -44,7 +42,7 @@ export default class TopMenu extends Component {
 
                 return <NavLink key={p.id} activeClassName={activeMenu}
                                 className={"menu text-decoration-none text-white "}
-                                to={p.url}>
+                                to={p.url.replace('id', app)}>
                     {p.label}
                 </NavLink>
             })}

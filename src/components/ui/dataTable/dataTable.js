@@ -194,7 +194,7 @@ class DataTable extends Component {
         return <div className="mt-3 col ">
 
             {this.props.showFilters && <Filters config={this.props.config} search={this.search} filterBy={this.filterBy}
-                                                elements={this.elements}></Filters>}
+                                                elements={this.elements}/>}
             {this.showMessage && <div className={"row"}>
                 <div className={"col"}><SuccessMessage message={gettext('Record saved')}/></div>
             </div>}
@@ -209,18 +209,18 @@ class DataTable extends Component {
                     <thead>
                     <tr className=" table-active">
                         <Columns config={this.props.config} parameters={this.parameters}
-                                 setOrderBy={this.setOrderBy}></Columns>
+                                 setOrderBy={this.setOrderBy}/>
                         <th scope="col" className={"no-print"}>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
                     <Elements records={this.list.results} config={this.props.config}
-                              extraActions={this.extraActions} actionDelete={this.delete}></Elements>
+                              extraActions={this.extraActions} actionDelete={this.delete}/>
                     </tbody>
                 </table>
             </div>
             {this.props.showPaging &&
-            <Pagination totalPages={totalPages} setPage={this.setPage} currentPage={this.getPage}></Pagination>}
+            <Pagination totalPages={totalPages} setPage={this.setPage} currentPage={this.getPage}/>}
         </div>
     }
 
@@ -229,7 +229,8 @@ class DataTable extends Component {
 DataTable.defaultProps = {
     showFilters: true,
     showPaging: false,
-    allowEdit: false
+    allowEdit: false,
+    allowDelete: true
 }
 
 DataTable.propTypes =
@@ -241,5 +242,6 @@ DataTable.propTypes =
         createComponent: PropTypes.func,
         newItemLabel: PropTypes.string,
         allowEdit: PropTypes.bool,
-        afterCreateFunction: PropTypes.func
+        afterCreateFunction: PropTypes.func,
+        allowDelete: PropTypes.bool
     }
