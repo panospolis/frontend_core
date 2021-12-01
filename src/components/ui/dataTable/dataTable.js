@@ -57,7 +57,7 @@ class DataTable extends Component {
 
     @action
     async componentDidMount() {
-        this.parameters.orderBy = this.props.config.fields[1].name;
+        this.parameters.orderBy = this.props.config.fields[0].name;
         await this.sendRequest();
         this.labels = this.props.labels;
 
