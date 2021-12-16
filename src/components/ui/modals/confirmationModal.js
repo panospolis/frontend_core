@@ -34,9 +34,9 @@ export default class ConfirmationModal extends Component {
             </div>
             <div className="modal-footer">
                 <button onClick={UIStore.toggleModal} type="button" className="btn btn-danger"
-                        data-dismiss="modal">{gettext('No')}
+                        data-dismiss="modal" data-testid={'cancel-button'}>{gettext('No')}
                 </button>
-                <button onClick={this.onConfirm} type="button" className="btn btn-success">{gettext('Yes')}</button>
+                <button onClick={this.onConfirm} type="button" data-testid={'confirm-button'} className="btn btn-success">{gettext('Yes')}</button>
             </div>
         </div>
     }

@@ -102,7 +102,7 @@ export default class GenericForm extends Component {
     actionForms(isSubmitting) {
         return <div key={"submitting-form"} className="row d-flex justify-content-center mt-5 no-print">
             <div className="col-7 mb-3 text-center">
-                <button className="btn btn-success col-3" type="submit">
+                <button className="btn btn-success col-3"  data-testid={"submit-form"} type="submit">
                     {isSubmitting ? <Spinner/> : 'Save'}
                 </button>
             </div>

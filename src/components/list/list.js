@@ -44,7 +44,7 @@ export default class List extends Section {
     }
 
     async componentDidMount() {
-        await this.getDataAndRender();
+        //await this.getDataAndRender();
     }
 
     async getData(parameters) {

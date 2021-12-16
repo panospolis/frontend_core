@@ -153,7 +153,7 @@ class DataTable extends Component {
     extraActions(record) {
         return <div>
             {this.props.allowEdit && <div className={"col m-1 no-print"}>
-                <button className={"btn btn-success mr-2"} type={"button"} id={record.id}
+                <button className={"btn btn-success mr-2"} type={"button"} id={`edit-${record.id}`}
                         onClick={() => this.showModal(record.id)}>
                     <FontAwesomeIcon icon={faEdit}/>
                 </button>

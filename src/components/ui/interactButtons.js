@@ -18,7 +18,8 @@ export default class InteractButton extends Component {
     }
 
     render() {
-        return <button className={this.props.css} onClick={() => this.action()}>
+        const id = this.props.label?.replaceAll(' ','-') ?? this.props.id;
+        return <button className={this.props.css}  data-testid={id} id={id} onClick={() => this.action()}>
             <FontAwesomeIcon icon={this.props.icon}></FontAwesomeIcon> {this.props.label}</button>
     }
 }

@@ -19,7 +19,7 @@ export default class Columns extends Component {
         let labels = [];
         const {config} = this.props;
         config.labels.forEach((label, idx) => {
-            labels.push(<th style={{width: config.fields[idx].width}} scope="col" key={'label' + idx} id={config.fields[idx].name}
+            labels.push(<th style={{width: config.fields[idx].width}} scope="col" key={'label' + idx}  data-testid={config.fields[idx].name} id={config.fields[idx].name}
                             onClick={this.props.setOrderBy}>{label} {this.showOrdering(config.fields[idx].name)} </th>)
         });
 
