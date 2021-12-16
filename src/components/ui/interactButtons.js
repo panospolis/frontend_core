@@ -19,7 +19,8 @@ export default class InteractButton extends Component {
 
     render() {
         const id = this.props.label?.replaceAll(' ','-') ?? this.props.id;
-        return <button className={this.props.css}  data-testid={id} id={id} onClick={() => this.action()}>
+        const testid = this.props.label?.replaceAll(' ','-') ?? this.props.testid;
+        return <button className={this.props.css}  data-testid={testid} id={id} onClick={() => this.action()}>
             <FontAwesomeIcon icon={this.props.icon}></FontAwesomeIcon> {this.props.label}</button>
     }
 }
@@ -29,5 +30,6 @@ InteractButton.propTypes = {
     css: PropTypes.string,
     fn: PropTypes.func,
     label: PropTypes.string,
-    id: PropTypes.number
+    id: PropTypes.number,
+    testid: PropTypes.string,
 }
