@@ -55,7 +55,7 @@ export default class Elements extends Component {
 
     deleteAction(record) {
         return <div className="col m-1 no-print">
-            <InteractButton css={"btn btn-danger"} fn={this.onDelete} id={`delete-${record.id}`} icon={faTrash}/>
+            <InteractButton css={"btn btn-danger"} fn={this.onDelete} testid={`delete-${record.id}`} id={record.id} icon={faTrash}/>
         </div>
     }
 
