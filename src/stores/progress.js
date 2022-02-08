@@ -90,19 +90,19 @@ export default class ProgressStore {
             })
 
             if (result && result.data.app == item) {
-                if (result && result.data.app == item) {
-                    const {section, sub_section, id, modal} = result.data;
-                    runInAction(() => {
-                        if (!this.progress[item]) {
-                            this.progress[item] = [];
-                        }
-                        this.progress[item].push({
-                            section: parseInt(section),
-                            sub_section,
-                            modal
-                        });
-                    })
-                }
+                const {section, sub_section, id, modal} = result.data;
+
+                runInAction(() => {
+                    if (!this.progress[item]) {
+                        this.progress[item] = [];
+                    }
+                    this.progress[item].push({
+                        section: parseInt(section),
+                        sub_section,
+                        modal,
+                        id
+                    });
+                })
             }
         }
         return this.progress[item];
