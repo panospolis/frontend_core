@@ -40,6 +40,10 @@ export default class InfoPopOver extends Component {
     }
 
     render() {
+        const {infoMessage = null} = this.context.rootStore.config
+        if(!infoMessage){
+            return null;
+        }
         let title = this.props.title;
         let body = this.props.body;
         if (this.props.id) {

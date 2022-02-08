@@ -5,7 +5,6 @@ import {faPlus, faTrash} from '@fortawesome/free-solid-svg-icons'
 import {action, makeObservable, observable, runInAction} from "mobx";
 
 import {StoreContext} from "../../../context/Store";
-import {FieldElement} from "./fieldElement";
 
 export default class BaseMultipleFields extends React.Component {
     static contextType = StoreContext
@@ -93,6 +92,7 @@ export default class BaseMultipleFields extends React.Component {
         if (this.props.showAddButton) {
             return <div className={"row d-flex no-print"}>
                 <div className={"col-11 mt-3 mb-3"}><a className={"btn btn-success float-right"}
+                                                       data-testid={"add-mulitple-fields"}
                                                        onClick={this.addField}><FontAwesomeIcon
                     icon={faPlus}></FontAwesomeIcon> {gettext('add')}</a></div>
             </div>

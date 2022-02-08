@@ -22,6 +22,21 @@ export const permissionToAction = (target, key, descriptor) => {
     return descriptor;
 }
 
+export const checkModalConfirmation = (target, key, descriptor) => {
+    const originalMethod = descriptor.value;
+    descriptor.value = async function (...args) {
+        const id = this.rootStore.UIStore.getAppId();
+        const progressRecords = this.rootStore.ProgressStore.getProgressPerSection(id);
+
+        const filter = progressRecords?.filter(record => record.section === (args[0] - 1))
+
+        if(!filter[0].modal) {
+            const result = await originalMethod.apply(this, args);
+            return result;
+        }
+    }
+    return descriptor;
+}
 
 export const loader = (target, key, descriptor) => {
 

@@ -55,7 +55,7 @@ export default class Progress extends Component {
     showBody() {
         const {ProgressStore, UIStore} = this.context.rootStore;
         let id = UIStore.getAppId();
-
+        ProgressStore.setEnabledProgress(id, this.props.step);
         const access = ProgressStore.permissionForCurrentSection(id, this.props.step);
 
         return access;

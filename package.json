@@ -11,7 +11,8 @@
     "@babel/core": "7.14.6",
     "@babel/plugin-proposal-class-properties": "7.14.5",
     "@babel/plugin-proposal-decorators": "7.14.5",
-    "@babel/plugin-transform-runtime": "7.14.5",
+    "@babel/plugin-transform-runtime": "7.14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.5",
+
     "@babel/polyfill": "7.12.1",
     "@babel/preset-env": "7.14.7",
     "@babel/preset-react": "7.14.5",

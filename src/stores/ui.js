@@ -2,6 +2,7 @@ import {makeObservable, observable, runInAction} from "mobx";
 import React from "react";
 import ErrorModal from "../components/ui/modals/errorModal";
 import ConfirmationModal from "../components/ui/modals/confirmationModal";
+import {checkModalConfirmation} from "../decorators/ui";
 
 export default class UIStore {
     language = null;
@@ -57,7 +58,8 @@ export default class UIStore {
         }, 60 * 10 * 100)
     }
 
-    sModal(modal, type = '', styles = '', onClose = () => {}) {
+    sModal(modal, type = '', styles = '', onClose = () => {
+    }) {
         if (this.modal.type !== "error") {
             if (this.modal.body) {
                 this.closeModal();
@@ -72,10 +74,11 @@ export default class UIStore {
         }
     }
 
-    isModalForm(){
+    isModalForm() {
         return this.modal.type === 'form';
     }
-    getModalType(){
+
+    getModalType() {
         return this.modal.type;
     }
 
@@ -177,22 +180,25 @@ export default class UIStore {
         history.push(path.url.replace('id', this.app.id))
     }
 
-    getPhaseBySectionId(sectionId){
+    getPhaseBySectionId(sectionId) {
         return this.rootStore.config.sections.find(p => p.section_id === sectionId && p.language === this.getLanguage()).phase_id
     }
 
-    getSectionsByPhaseId(phaseId){
+    getSectionsByPhaseId(phaseId) {
         return this.rootStore.config.sections.filter(p => p.phase_id === phaseId && p.language === this.getLanguage())
     }
 
-    proceedToNextSection(id, history){
+    @checkModalConfirmation
+    proceedToNextSection(id, history) {
         const sections = this.rootStore.config.Sections;
         let path = this.rootStore.config.sections.find(section => {
             return section.section_id == id;
         })
 
-       if(path) {
-            this.sModal(<ConfirmationModal message={gettext('Proceed to next section')}
+        if (path) {
+            this.sModal(<ConfirmationModal showDoNotShowAgainCallback={this.rootStore.ProgressStore.updateModalProgress}
+                                           showDoNotShowAgain={true}
+                                           message={gettext('Proceed to next section')}
                                            action={() => this.goToNextSection(path, history)}/>);
         }
 

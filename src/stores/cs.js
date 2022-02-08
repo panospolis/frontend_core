@@ -165,6 +165,27 @@ export default class CsStore {
     /**
      *
      * @param id
+     * @param parameters
+     * @returns {Promise<null>}
+     */
+    @loader
+    async updateProgressStep(id, parameters = null) {
+        let data = null;
+        try {
+            data = await axios.post(`${this.url}/progress/${id}/update/`, parameters, {
+                headers: {
+                    ...this.formHeaders(),
+                }
+            });
+        } catch (e) {
+            return this.onErrorThrowModal (e);
+        }
+        return data
+    }
+
+    /**
+     *
+     * @param id
      * @param progress_id
      * @returns {Promise<null>}
      */

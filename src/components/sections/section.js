@@ -1,6 +1,5 @@
-import React, {Component} from "react";
+import React from "react";
 import {StoreContext} from "../../context/Store";
-import {makeObservable, observable} from "mobx";
 import InformationBox from "../ui/informationBox";
 
 export default class Section extends React.Component {
@@ -15,6 +14,7 @@ export default class Section extends React.Component {
         this.getSectionFromConfig = this.getSectionFromConfig.bind(this);
         this.completeTheStep = this.completeTheStep.bind(this);
         this.saveStep = this.saveStep.bind(this);
+        this.checkProgress = this.checkProgress.bind(this);
 
         // makeObservable(this, {
         //     showNextSectionButton: observable

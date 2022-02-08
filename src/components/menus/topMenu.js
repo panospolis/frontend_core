@@ -23,25 +23,25 @@ export default class TopMenu extends Component {
         let activeMenu = "active bg-primary";
 
         return <nav className="menu">
-            {this.context.rootStore.config.phases.filter(h => h.language === UIStore.getLanguage()).map(p => {
+            {this.context.rootStore.config.phases.filter(h => (h.language === UIStore.getLanguage() && h.show_on_menu)).map(p => {
                 activeMenu = "";
                 const sections = p.section_id.split(',');
                 const first = sections.shift();
-
-                if (first > progress) {
+                debugger;
+                if (parseInt(first) > progress) {
                     activeMenu = "bg-dark";
-                } else if (p.section_id.includes(progress)) {
+                } else if (p.section_id.split(',').some(i => parseInt(i) === parseInt(progress))) {
                     activeMenu = "bg-secondary";
                 } else {
                     activeMenu = "bg-success";
                 }
 
-                if (p.section_id.includes(this.props.step)) {
+                if (p.section_id.split(',').some(i => parseInt(i) === parseInt(this.props.step))) {
                     activeMenu = " active bg-primary";
                 }
 
-                return <NavLink key={p.id} activeClassName={activeMenu}
-                                className={"menu text-decoration-none text-white "}
+                return <NavLink key={p.id}
+                                className={`menu text-decoration-none text-white ${activeMenu}`}
                                 to={p.url.replace('id', app)}>
                     {p.label}
                 </NavLink>

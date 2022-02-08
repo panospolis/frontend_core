@@ -27,7 +27,7 @@ export const FieldElement = function (props) {
                 return <div className="row d-flex">
                     <div className={props.classValue}>
                         <input data-testid={props.name} type={props.type} name={props.name} autoComplete={"off"}
-                               className={"form-control"} {...field} />
+                               className={`form-control ${props.classValue}`} {...field} />
                         {errorDiv}
                     </div>
                     {props.children}
@@ -42,7 +42,7 @@ FieldElement.defaultProps = {
     type: 'text',
     showErrors: true,
     touched: true,
-    classValue: 'col-11 mb-2'
+    classValue: ''
 }
 
 FieldElement.propTypes =

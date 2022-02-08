@@ -14,13 +14,26 @@ export default class ErrorMessage extends Component {
         this.props.fn();
     }
 
+    showMessage() {
+        if (!Array.isArray(this.props.message)) {
+            return <div><FontAwesomeIcon icon={faExclamationTriangle}></FontAwesomeIcon> {this.props.message}</div>;
+        }
+
+        return <div><FontAwesomeIcon icon={faExclamationTriangle}></FontAwesomeIcon> {gettext('Errors :')}
+            <ul>{this.props.message.map(m => <li key={m}>{m}</li>)}</ul>
+        </div>
+    }
+
     render() {
         return <div className="alert alert-danger" role="alert">
-            <FontAwesomeIcon icon={faExclamationTriangle}></FontAwesomeIcon>{this.props.message}
+            {this.showMessage()}
         </div>
     }
 }
 
 ErrorMessage.propTypes = {
-    message: PropTypes.string
+    message: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array
+    ])
 }
