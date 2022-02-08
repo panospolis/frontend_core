@@ -74,6 +74,40 @@ export default class FileBrowser extends Component {
         }
     }
 
+    actions(file) {
+        if (this.props.selections) {
+            return <div className="row">
+                <div className={"col m-1"}>
+                    <button className={'btn btn-danger no-print'} type={"button"}
+                            id={file.id}
+                            data-id={file.section}
+                            onClick={() => this.props.selected(file)}>
+                        <FontAwesomeIcon icon={faPlus}/>
+                    </button>
+                </div>
+            </div>
+        }
+
+        return <div className="row">
+            <div className={"col m-1"}>
+                <button className={'btn btn-danger no-print'} type={"button"}
+                        id={file.id}
+                        data-id={file.section}
+                        onClick={() => this.delete(file.id, file.section)}>
+                    <FontAwesomeIcon icon={faTrash}/>
+                </button>
+            </div>
+            <div className={"col m-1"}>
+                <a className="btn btn-info" target={"_blank"}
+                   href={`${file.file_upload}`}
+                   target={'_blank'}
+                   id={file.id}
+                >
+                    <FontAwesomeIcon icon={faDownload}/>
+                </a>
+            </div>
+        </div>
+    }
 
     render() {
         if (!this.files.length) {
@@ -97,25 +131,7 @@ export default class FileBrowser extends Component {
                             style={{width: "10%"}}>{this.fileIcon(file.file_type)}</td>
                         <td className={"no-print"}>
                             <div className='container no-print'>
-                                <div className="row">
-                                    <div className={"col m-1"}>
-                                        <button className={'btn btn-danger no-print'} type={"button"}
-                                                id={file.id}
-                                                data-id={file.section}
-                                                onClick={() => this.delete(file.id, file.section)}>
-                                            <FontAwesomeIcon icon={faTrash}/>
-                                        </button>
-                                    </div>
-                                    <div className={"col m-1"}>
-                                        <a className="btn btn-info" target={"_blank"}
-                                           href={`${file.file_upload}`}
-                                           target={'_blank'}
-                                           id={file.id}
-                                        >
-                                            <FontAwesomeIcon icon={faDownload}/>
-                                        </a>
-                                    </div>
-                                </div>
+                                {this.actions(file)}
                             </div>
                         </td>
                     </tr>
@@ -126,9 +142,13 @@ export default class FileBrowser extends Component {
     }
 }
 
-FileBrowser.defaultProps = {}
+FileBrowser.defaultProps = {
+    selections: false
+}
 
 FileBrowser.propTypes = {
     files: PropTypes.array,
-    id: PropTypes.number
+    id: PropTypes.number,
+    selections: PropTypes.bool,
+    selected: PropTypes.func
 }
