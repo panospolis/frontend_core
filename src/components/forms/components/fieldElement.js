@@ -42,7 +42,7 @@ FieldElement.defaultProps = {
     type: 'text',
     showErrors: true,
     touched: true,
-    classValue: ''
+    classValue: 'col-11 mb-2'
 }
 
 FieldElement.propTypes =
