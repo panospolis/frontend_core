@@ -141,14 +141,14 @@ export default class ProgressStore {
     setProgressToArray(progress) {
         for (const pro of progress) {
             const section = parseInt(pro.section);
-            const id = parseInt(pro.app);
+            const appId = parseInt(pro.app);
             const sub_section = pro.sub_section;
-            const {modal} = pro;
+            const {modal, id} = pro;
 
-            if (this.progress[id]) {
-                this.progress[id].push({section: section, sub_section, modal})
+            if (this.progress[appId]) {
+                this.progress[appId].push({section: section, sub_section, modal, id})
             } else {
-                this.progress[id] = [{section: section, sub_section, modal}]
+                this.progress[appId] = [{section: section, sub_section, modal, id}]
             }
         }
 

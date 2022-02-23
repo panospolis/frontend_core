@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import PropTypes from 'prop-types';
 import {StoreContext} from "../../context/Store";
 import DeleteModal from "./modals/deleteModal";
+import {faTrash} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default class Delete extends Component {
     static contextType = StoreContext
@@ -19,7 +21,8 @@ export default class Delete extends Component {
                        id={id}
                        data-testid={`delete-button-${id}`}
                        onClick={() => this.onDelete(id)}>
-            {gettext('delete')}
+
+            <FontAwesomeIcon icon={faTrash}/>
         </button>
     }
 }

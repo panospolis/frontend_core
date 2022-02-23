@@ -210,7 +210,7 @@ class DataTable extends Component {
                     <tr className=" table-active">
                         <Columns config={this.props.config} parameters={this.parameters}
                                  setOrderBy={this.setOrderBy}/>
-                        <th scope="col" className={"no-print"}>Actions</th>
+                        <th scope="col" className={"no-print"}>{this.props.actionColumnLabel}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -230,7 +230,8 @@ DataTable.defaultProps = {
     showFilters: true,
     showPaging: false,
     allowEdit: false,
-    allowDelete: true
+    allowDelete: true,
+    actionColumnLabel : gettext('Actions')
 }
 
 DataTable.propTypes =
@@ -243,5 +244,6 @@ DataTable.propTypes =
         newItemLabel: PropTypes.string,
         allowEdit: PropTypes.bool,
         afterCreateFunction: PropTypes.func,
-        allowDelete: PropTypes.bool
+        allowDelete: PropTypes.bool,
+        actionColumnLabel: PropTypes.string
     }
