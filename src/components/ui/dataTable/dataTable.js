@@ -151,7 +151,7 @@ class DataTable extends Component {
     }
 
     extraActions(record) {
-        return <div>
+        return <>
             {this.props.allowEdit && <div className={"col m-1 no-print"}>
                 <button className={"btn btn-success mr-2"} type={"button"} id={`edit-${record.id}`}
                         onClick={() => this.showModal(record.id)}>
@@ -159,7 +159,7 @@ class DataTable extends Component {
                 </button>
             </div>}
             {this.props.extraActions(record)}
-        </div>
+        </>
     }
 
     resetMessage() {
