@@ -54,9 +54,8 @@ export default class Elements extends Component {
     }
 
     deleteAction(record) {
-        return <div className="col m-1 no-print">
-            <InteractButton css={"btn btn-danger"} fn={this.onDelete} testid={`delete-${record.id}`} id={record.id} icon={faTrash}/>
-        </div>
+        return <InteractButton css={"btn btn-danger"} fn={this.onDelete} testid={`delete-${record.id}`} id={record.id}
+                               icon={faTrash}/>
     }
 
     actions(record) {
@@ -64,8 +63,10 @@ export default class Elements extends Component {
         return <td className={"no-print"}>
             <div className='container no-print'>
                 <div className="row">
-                    {this.props.allowDelete && this.deleteAction(record)}
-                    {extraAction}
+                    <div className="col m-1 no-print">
+                        {this.props.allowDelete && this.deleteAction(record)}
+                        {extraAction}
+                    </div>
                 </div>
             </div>
         </td>

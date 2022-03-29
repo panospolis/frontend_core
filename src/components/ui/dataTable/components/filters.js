@@ -20,14 +20,15 @@ class Filters extends Component {
         let inputs = [];
         const {config} = this.props;
         config.fields.forEach((field, idx) => {
-
-            inputs.push(<div className="col" key={'input' + idx}>
-                <input type="text"
-                       className="form-control"
-                       placeholder={config.labels[idx]} name={field.name}
-                       value={this.props.elements[field]}
-                       onChange={this.props.filterBy}/>
-            </div>)
+            if (!field.noFilter) {
+                inputs.push(<div className="col" key={'input' + idx}>
+                    <input type="text"
+                           className="form-control"
+                           placeholder={config.labels[idx]} name={field.name}
+                           value={this.props.elements[field]}
+                           onChange={this.props.filterBy}/>
+                </div>)
+            }
         });
 
         inputs.push(<div className="col" key="button">

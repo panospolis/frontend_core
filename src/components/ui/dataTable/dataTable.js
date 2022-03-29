@@ -152,12 +152,10 @@ class DataTable extends Component {
 
     extraActions(record) {
         return <>
-            {this.props.allowEdit && <div className={"col m-1 no-print"}>
-                <button className={"btn btn-success mr-2"} type={"button"} id={`edit-${record.id}`}
+            {this.props.allowEdit && <button className={"btn btn-success ml-2"} type={"button"} id={`edit-${record.id}`}
                         onClick={() => this.showModal(record.id)}>
                     <FontAwesomeIcon icon={faEdit}/>
-                </button>
-            </div>}
+                </button>}
             {this.props.extraActions(record)}
         </>
     }
@@ -210,7 +208,7 @@ class DataTable extends Component {
                     <tr className=" table-active">
                         <Columns config={this.props.config} parameters={this.parameters}
                                  setOrderBy={this.setOrderBy}/>
-                        <th scope="col" className={"no-print"}>{this.props.actionColumnLabel}</th>
+                        <th scope="col" className={"no-print text-center"}>{this.props.actionColumnLabel}</th>
                     </tr>
                     </thead>
                     <tbody>
