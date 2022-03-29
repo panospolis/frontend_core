@@ -33,7 +33,6 @@ export default class Elements extends Component {
     renderFields(record) {
         let fields = [];
         const {config} = this.props;
-        debugger;
         config.fields.forEach((field, idx) => {
             if (field.name === 'id') {
                 fields.push(<th scope="row" style={{width: field.width}} key={"field" + idx}>{record[field.name]}</th>)

@@ -27,7 +27,6 @@ export default class TopMenu extends Component {
                 activeMenu = "";
                 const sections = p.section_id.split(',');
                 const first = sections.shift();
-                debugger;
                 if (parseInt(first) > progress) {
                     activeMenu = "bg-dark";
                 } else if (p.section_id.split(',').some(i => parseInt(i) === parseInt(progress))) {

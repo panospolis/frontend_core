@@ -79,7 +79,6 @@ export const errorFormHandler = (target, key, descriptor) => {
             runInAction(() => {
                 this.errorMessageShow = message;
             })
-            debugger;
             Logger.error({"message": message, "stack": `${e.response.status} statusText: ${e.response.statusText}`});
         }
 
