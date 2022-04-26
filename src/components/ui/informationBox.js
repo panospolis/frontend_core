@@ -5,6 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDown, faAngleUp, faInfoCircle} from "@fortawesome/free-solid-svg-icons";
 import {makeObservable, observable, runInAction} from "mobx";
 import parse from 'html-react-parser';
+import PropTypes from "prop-types";
 
 @observer
 export default class InformationBox extends Component {
