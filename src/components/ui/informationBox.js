@@ -9,7 +9,7 @@ import parse from 'html-react-parser';
 @observer
 export default class InformationBox extends Component {
     static contextType = StoreContext
-    visible = false;
+    visible = true;
 
     constructor(props) {
         super(props);
@@ -21,6 +21,11 @@ export default class InformationBox extends Component {
         this.toggle = this.toggle.bind(this);
     }
 
+    componentDidMount() {
+        runInAction(() => {
+            this.visible = this.props.visible;
+        });
+    }
 
     toggle() {
         runInAction(() => {
@@ -50,4 +55,12 @@ export default class InformationBox extends Component {
             </div>
         </div>
     }
+}
+
+InformationBox.defaultProps = {
+    visible: false
+}
+
+InformationBox.propTypes = {
+    visible: PropTypes.bool
 }
