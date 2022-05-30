@@ -6,7 +6,6 @@ import {makeObservable, observable, runInAction} from "mobx";
 import {StoreContext} from "../../../context/Store";
 import MultipleFields from "./multipleFields";
 import {SelectField} from "./selectField";
-import BaseMultipleFields from "./baseMultipleFields";
 
 
 @observer
@@ -14,11 +13,11 @@ export default class SelectFieldWithTextField extends React.Component {
     static contextType = StoreContext
     addFields = false;
     selectedValue = "";
+    values = []
 
 
     constructor(props) {
         super(props);
-
         makeObservable(this, {
             addFields: observable,
             selectedValue: observable
@@ -30,7 +29,7 @@ export default class SelectFieldWithTextField extends React.Component {
 
     componentDidMount() {
         const value = this.props.value;
-
+        this.values = this.props.values[this.props.name];
         this.toggle(value)
     }
 
@@ -48,12 +47,19 @@ export default class SelectFieldWithTextField extends React.Component {
 
         if (this.context.rootStore.UIStore?.formik?.values) {
             this.context.rootStore.UIStore.formik.values[this.props.name] = value;
-            this.context.rootStore.UIStore.formik.initialValues[this.props.name] = value;
+            //this.context.rootStore.UIStore.formik.initialValues[this.props.name] = value;
+            for (const field in this.context.rootStore.UIStore.formik.values ) {
+                if(field.includes(this.props.name) && field !== this.props.name) {
+                    delete this.context.rootStore.UIStore.formik.values[field];
+                    delete this.context.rootStore.UIStore.formik.initialValues[field];
+                }
+            }
         }
     }
 
     onSelected(e) {
         const value = e.target.value;
+        this.values = [];
         this.toggle(value)
     }
 
@@ -63,31 +69,28 @@ export default class SelectFieldWithTextField extends React.Component {
             showRemoveButton = false;
             showAddButton = false;
         }
-        let values = {};
-        values[this.props.name] = this.props.values[this.props.name].filter(val => val.types === this.selectedValue);
 
+        let values = {};
+        values[this.props.name] = this.values ?? [];
         return <div>
             <div className="row d-flex">
                 <div className="col-3 mb-3">
                     <strong><label className="form-label">{this.props.label}</label></strong>
                 </div>
                 <div className="col-9 mb-3">
-
                     <div className="row d-flex">
                         <SelectField value={this.selectedValue} onChange={this.onSelected} id={this.props.name}
-                                     name={this.props.name} options={this.context.rootStore.config[this.props.config]}/>
+                                     name={this.props.name}
+                                     options={this.context.rootStore.config.models[this.props.config]}/>
                     </div>
                     {this.addFields &&
-                    <MultipleFields showLabel={this.props.showLabel} fieldLabel={this.props.textFieldLabel}
-                                    showAddButton={showAddButton} showRemoveButton={showRemoveButton}
-                                    name={this.props.name} values={values}></MultipleFields>}
+                        <MultipleFields showLabel={this.props.showLabel} fieldLabel={this.props.textFieldLabel}
+                                        showAddButton={showAddButton} showRemoveButton={showRemoveButton}
+                                        name={this.props.name} values={values}/>}
                 </div>
-
             </div>
-
         </div>
     }
-
 }
 
 SelectFieldWithTextField.defaultProps =

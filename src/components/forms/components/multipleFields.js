@@ -17,8 +17,8 @@ export default class MultipleFields extends BaseMultipleFields {
         const keyName = name;
         if (this.props.values?.[keyName]?.length) {
             this.props.values[keyName].forEach(value => {
-                if (value.types && this.defaultFields.includes(`_${value.types}`)) {
-                    if (this.props.name.includes(`_${value.types}`)) {
+                if (value.types && this.defaultFields.includes(`_${value.types.toLowerCase()}`)) {
+                    if (this.props.name.includes(`_${value.types.toLowerCase()}`)) {
                         this.addField({}, value.value)
                     }
                 } else {

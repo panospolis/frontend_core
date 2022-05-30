@@ -10,6 +10,8 @@ import FormErrorMessage from "../ui/formMessages/errorMessage";
 export default class GenericForm extends Component {
     static contextType = StoreContext
 
+    validateOnMount = false;
+    enableReinitialize = true;
     initialValues = {};
 
     constructor(props) {
@@ -173,16 +175,18 @@ export default class GenericForm extends Component {
      * @returns {JSX.Element|null}
      */
     render() {
-        if (this.getInitialValues() && !Object.entries(this.getInitialValues()).length) {
+        const initData = this.getInitialValues();
+        if (initData && !Object.entries(initData).length) {
             return null;
         }
 
         return <div className="container">
             {this.header()}
             <Formik className={"bg-light"} innerRef={(p) => (this.context.rootStore.UIStore.formik = p)}
-                    initialValues={{...this.getInitialValues()}}
+                    initialValues={{...initData}}
+                    validateOnMount={this.validateOnMount}
                     validate={(values) => this.validateForm(values)}
-                    enableReinitialize={true}
+                    enableReinitialize={this.enableReinitialize}
                     onSubmit={(values, actions) => this.submitForm(values, actions)
                     }
             >

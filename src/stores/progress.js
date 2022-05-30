@@ -145,11 +145,14 @@ export default class ProgressStore {
             const sub_section = pro.sub_section;
             const {modal, id} = pro;
 
-            if (this.progress[appId]) {
-                this.progress[appId].push({section: section, sub_section, modal, id})
-            } else {
-                this.progress[appId] = [{section: section, sub_section, modal, id}]
-            }
+            runInAction(() => {
+                if (this.progress[appId]) {
+                    this.progress[appId].push({section: section, sub_section, modal, id})
+                } else {
+                    this.progress[appId] = [{section: section, sub_section, modal, id}]
+                }
+            })
+
         }
 
         return this.progress;
@@ -160,7 +163,6 @@ export default class ProgressStore {
         const last = this.lastProgressStep(appId)
         if (last > progress_id) {
             await this.rootStore.CsStore.deleteProgress(appId, this.sectionId);
-            console.log('stop')
         }
     }
 
@@ -181,13 +183,16 @@ export default class ProgressStore {
     async updateModalProgress(value) {
         const progress = this.getEnabledProgress()
         const response = await this.rootStore.CsStore.updateProgressStep(progress.id, {"modal": value});
-        this.progress[response.data.app] = this.progress[response.data.app].map(pro => {
-            if (pro.section === parseInt(response.data.section)) {
-                pro.modal = response.data.modal;
-            }
+        runInAction(() =>{
+            this.progress[response.data.app] = this.progress[response.data.app].map(pro => {
+                if (pro.section === parseInt(response.data.section)) {
+                    pro.modal = response.data.modal;
+                }
 
-            return pro;
-        });
+                return pro;
+            });
+        })
+
         this.setEnabledProgress(parseInt(response.data.app), parseInt(response.data.section))
     }
 

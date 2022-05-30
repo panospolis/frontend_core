@@ -73,7 +73,7 @@ export default class BaseMultipleFields extends React.Component {
 
     removeAllFields() {
         this.sharedFields.forEach(field => {
-            if (this.context.rootStore.UIStore.formik.values[field.id] || this.context.rootStore.UIStore.formik.values[field.id] === "") {
+            if (this.context.rootStore.UIStore.formik && (this.context.rootStore.UIStore.formik.values[field.id] || this.context.rootStore.UIStore.formik.values[field.id] === "")) {
                 delete this.context.rootStore.UIStore.formik.initialValues[field.id]
                 delete this.context.rootStore.UIStore.formik.values[field.id]
             }

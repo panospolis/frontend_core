@@ -25,9 +25,9 @@ export default class Section extends React.Component {
        // await this.completeTheStep()
     }
 
-    getInfoText(){
-        const section = this.context.rootStore.config.Sections.PhaseOne.find(section => section.id === this.sectionId)
-        return section.info;
+    getInfoText() {
+        const language = this.context.rootStore.UIStore.getLanguage()
+        return this.context.rootStore.config.sections.find(section => (section.section_id === this.sectionId && language === section.language))?.info ?? "";
     }
 
     async completeTheStep(params = {}) {
@@ -70,8 +70,8 @@ export default class Section extends React.Component {
         return Sections[this.sectionId];
     }
 
-    guidance() {
-        return <InformationBox content={this.getInfoText()}/>
+    guidance(visible = false) {
+        return <InformationBox visible={visible} content={this.getInfoText()}/>
     }
 
     header() {

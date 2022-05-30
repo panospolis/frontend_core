@@ -31,7 +31,6 @@ export default class ListDnDTable extends DataTable {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        super.componentDidUpdate(prevProps, prevState, snapshot);
         if (this.newList.length !== this.props.list.results.length) {
             runInAction(() => {
                 this.newList = this.props.list.results
