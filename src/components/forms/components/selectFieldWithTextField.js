@@ -6,6 +6,7 @@ import {makeObservable, observable, runInAction} from "mobx";
 import {StoreContext} from "../../../context/Store";
 import MultipleFields from "./multipleFields";
 import {SelectField} from "./selectField";
+import {UIStore} from "../../../stores";
 
 
 @observer
@@ -72,6 +73,7 @@ export default class SelectFieldWithTextField extends React.Component {
 
         let values = {};
         values[this.props.name] = this.values ?? [];
+        const language = UIStore.getLanguage();
         return <div>
             <div className="row d-flex">
                 <div className="col-3 mb-3">
@@ -81,7 +83,7 @@ export default class SelectFieldWithTextField extends React.Component {
                     <div className="row d-flex">
                         <SelectField value={this.selectedValue} onChange={this.onSelected} id={this.props.name}
                                      name={this.props.name}
-                                     options={this.context.rootStore.config.models[this.props.config]}/>
+                                     options={this.context.rootStore.config.models[language][this.props.config]}/>
                     </div>
                     {this.addFields &&
                         <MultipleFields showLabel={this.props.showLabel} fieldLabel={this.props.textFieldLabel}
