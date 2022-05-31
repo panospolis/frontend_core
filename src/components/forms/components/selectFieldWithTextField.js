@@ -6,7 +6,6 @@ import {makeObservable, observable, runInAction} from "mobx";
 import {StoreContext} from "../../../context/Store";
 import MultipleFields from "./multipleFields";
 import {SelectField} from "./selectField";
-import {UIStore} from "../../../stores";
 
 
 @observer
@@ -73,7 +72,7 @@ export default class SelectFieldWithTextField extends React.Component {
 
         let values = {};
         values[this.props.name] = this.values ?? [];
-        const language = UIStore.getLanguage();
+        const language = this.context.rootStore.UIStore.getLanguage();
         return <div>
             <div className="row d-flex">
                 <div className="col-3 mb-3">

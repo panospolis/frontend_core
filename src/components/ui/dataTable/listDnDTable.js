@@ -64,14 +64,14 @@ export default class ListDnDTable extends DataTable {
                 <div className="card-body">
                     <div className="row mb-4">
                         <ListColumns config={this.props.config} parameters={this.parameters}
-                                     setOrderBy={this.setOrderBy}></ListColumns>
+                                     setOrderBy={this.setOrderBy}/>
                         <div style={{width: '10%'}}><strong>{gettext('Actions')}</strong></div>
                     </div>
                     <div className={"drop-zone"}>
                         <ReactSortable
                             list={this.newList}
-                            setList={(newState) => {
-                                this.setNewOrdering(newState)
+                            setList={async (newState) => {
+                                await this.setNewOrdering(newState)
                             }}
                             onEnd={async () => {
                                 await this.context.rootStore.CsStore.updateSection(this.newList);
@@ -83,7 +83,7 @@ export default class ListDnDTable extends DataTable {
                             <ListElements
                                 records={this.newList} config={this.props.config}
                                 extraActions={this.extraActions} on_drop={this.on_drop}
-                                actionDelete={this.delete}></ListElements>
+                                actionDelete={this.delete}/>
 
                         </ReactSortable>
                     </div>
