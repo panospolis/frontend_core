@@ -33,7 +33,7 @@ export default class ListElements extends Elements {
         const {records} = this.props;
         records.forEach((record, idx) => {
             items.push(<div
-                className="row default-zone-element" key={"list" + idx}>
+                className="row default-zone-element grab-me-and-drag-me" key={"list" + idx}>
                 {this.renderFields(record)}
                 {this.actions(record)}
             </div>)
