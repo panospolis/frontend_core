@@ -2,10 +2,10 @@ import React, {Component} from "react";
 import PropTypes from 'prop-types';
 import {action, makeObservable, observable, runInAction} from "mobx"
 import {observer} from 'mobx-react';
-import Elements from "./components/Elements";
-import Columns from "./components/Columns";
-import Filters from "./components/Filters";
-import Pagination from './components/Pagination'
+import Elements from "./components/elements";
+import Columns from "./components/columns";
+import Filters from "./components/filters";
+import Pagination from './components/pagination'
 import InteractButton from "../interactButtons";
 import {faEdit, faPlus} from "@fortawesome/free-solid-svg-icons";
 import ContentModal from "../modals/contentModal";

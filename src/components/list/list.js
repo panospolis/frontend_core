@@ -1,5 +1,5 @@
 import React from "react";
-import Datatable from "../ui/datatable/Datatable";
+import Datatable from "../ui/datatable/datatable";
 import {makeObservable, observable, runInAction} from "mobx"
 import Section from "../sections/section";
 

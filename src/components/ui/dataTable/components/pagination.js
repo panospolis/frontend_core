@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
-import Columns from "./Columns";
+import Columns from "./columns";
 
 
 export default class Pagination extends Component {
