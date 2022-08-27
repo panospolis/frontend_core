@@ -3,7 +3,7 @@ import {observer} from "mobx-react";
 import PropTypes from "prop-types";
 
 import MultipleFields from "./multipleFields";
-import {StoreContext} from "../../../context/Store";
+import {StoreContext} from "../../../context/store";
 import ContainerWithInfoPopup from "../../ui/containerWithInfoPopup";
 
 @observer

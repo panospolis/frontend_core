@@ -1,5 +1,5 @@
 import React from "react";
-import {StoreContext} from "../context/Store";
+import {StoreContext} from "../context/store";
 import ErrorModal from "../components/ui/modals/errorModal";
 
 export default class ErrorBoundary extends React.Component {

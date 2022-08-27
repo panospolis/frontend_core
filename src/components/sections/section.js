@@ -1,5 +1,5 @@
 import React from "react";
-import {StoreContext} from "../../context/Store";
+import {StoreContext} from "../../context/store";
 import InformationBox from "../ui/informationBox";
 
 export default class Section extends React.Component {

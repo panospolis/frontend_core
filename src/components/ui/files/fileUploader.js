@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {observer} from "mobx-react";
 import {makeObservable, observable, runInAction} from "mobx";
 import Dropzone from "react-dropzone";
-import {StoreContext} from "../../../context/Store";
+import {StoreContext} from "../../../context/store";
 import UploadedFiles from "./uploadedFiles";
 import PropTypes from "prop-types";
 import ErrorMessage from "../formMessages/errorMessage";

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {BrowserRouter} from 'react-router-dom';
 
-import {StoreContext} from "./context/Store";
+import {StoreContext} from "./context/store";
 import Layout from "./components/layout/layout";
 import Routes from "./routes/route"
 import {bootStrap} from './bootStrap';

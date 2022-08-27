@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import DatePicker from "react-datepicker";
 
-import {StoreContext} from "../../../context/Store";
+import {StoreContext} from "../../../context/store";
 import {observer} from "mobx-react";
-import {action, makeObservable, observable, runInAction} from "mobx";
+import {action, makeObservable, observable} from "mobx";
 import {ErrorMessage} from "formik";
 
 @observer

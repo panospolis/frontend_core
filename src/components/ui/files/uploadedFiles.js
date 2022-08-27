@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {observer} from "mobx-react";
-import {StoreContext} from "../../../context/Store";
+import {StoreContext} from "../../../context/store";
 import PropTypes from "prop-types";
 import SuccessMessage from "../formMessages/successMessage";
 

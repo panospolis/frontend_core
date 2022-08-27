@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFileUpload} from "@fortawesome/free-solid-svg-icons";
 import ContentModal from "./modals/contentModal";
 import FileUploader from "./files/fileUploader";
-import {StoreContext} from "../../context/Store";
+import {StoreContext} from "../../context/store";
 import PropTypes from "prop-types";
 
 export default class Upload extends Component {

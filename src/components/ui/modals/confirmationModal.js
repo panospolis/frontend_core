@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {StoreContext} from "../../../context/Store";
+import {StoreContext} from "../../../context/store";
 import PropTypes from "prop-types";
 import {observer} from "mobx-react";
 import {action, makeObservable, observable} from "mobx"

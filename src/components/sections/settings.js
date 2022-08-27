@@ -1,5 +1,5 @@
 import React from "react";
-import {StoreContext} from "../../context/Store";
+import {StoreContext} from "../../context/store";
 
 
 export default class Settings extends React.Component {

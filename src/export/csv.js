@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDownload} from '@fortawesome/free-solid-svg-icons'
-import {StoreContext} from "../../context/Store";
+import {StoreContext} from "../../context/store";
 import CsvDownloader from 'react-csv-downloader';
 
 export default class Csv extends Component {

@@ -4,7 +4,7 @@ import {makeObservable, observable, runInAction} from "mobx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faInfoCircle} from "@fortawesome/free-solid-svg-icons";
 
-import {StoreContext} from "../../../context/Store";
+import {StoreContext} from "../../../context/store";
 import PropTypes from "prop-types";
 import {FieldElement} from "./fieldElement";
 import OrganizationsTextFieldWithField from "../../../components/organizationsTextFieldWithField";

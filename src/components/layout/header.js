@@ -3,7 +3,7 @@ import LanguageSelector from "../ui/languageSelector";
 import {NavLink} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHome} from "@fortawesome/free-solid-svg-icons";
-import {StoreContext} from "../../context/Store";
+import {StoreContext} from "../../context/store";
 
 class Header extends Component {
     static contextType = StoreContext

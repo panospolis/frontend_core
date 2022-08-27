@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
-import {StoreContext} from "../../context/Store";
+import {StoreContext} from "../../context/store";
 import DeleteModal from "./modals/deleteModal";
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

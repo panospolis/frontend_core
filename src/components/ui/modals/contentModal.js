@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {StoreContext} from "../../../context/Store";
+import {StoreContext} from "../../../context/store";
 import PropTypes from "prop-types";
 
 export default class ContentModal extends Component {

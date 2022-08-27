@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {withRouter} from "react-router";
-import {StoreContext} from "../../context/Store";
+import {StoreContext} from "../../context/store";
 import {NavLink} from "react-router-dom";
 
 

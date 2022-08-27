@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {withRouter} from "react-router";
-import {StoreContext} from "../../context/Store";
+import {StoreContext} from "../../context/store";
 import {observer} from "mobx-react";
 import {makeObservable, observable, runInAction} from "mobx";
 import PropTypes from "prop-types";

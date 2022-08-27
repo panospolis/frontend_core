@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {NavLink} from "react-router-dom";
 import {withRouter} from "react-router";
-import {StoreContext} from "../../context/Store";
+import {StoreContext} from "../../context/store";
 import {observer} from "mobx-react";
 
 @withRouter

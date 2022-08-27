@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus, faTrash} from '@fortawesome/free-solid-svg-icons'
 import {action, makeObservable, observable, runInAction} from "mobx";
 
-import {StoreContext} from "../../../context/Store";
+import {StoreContext} from "../../../context/store";
 
 export default class BaseMultipleFields extends React.Component {
     static contextType = StoreContext

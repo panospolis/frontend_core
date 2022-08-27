@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {StoreContext} from "../../context/Store";
+import {StoreContext} from "../../context/store";
 import {observer} from "mobx-react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDown, faAngleUp, faInfoCircle} from "@fortawesome/free-solid-svg-icons";

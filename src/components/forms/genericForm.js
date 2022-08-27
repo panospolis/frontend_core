@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Form, Formik} from 'formik';
 import {NavLink} from "react-router-dom";
 
-import {StoreContext} from "../../context/Store";
+import {StoreContext} from "../../context/store";
 import {Spinner} from "../ui/spinner"
 import FormErrorMessage from "../ui/formMessages/errorMessage";
 

@@ -9,7 +9,7 @@ import Pagination from './components/pagination'
 import InteractButton from "../interactButtons";
 import {faEdit, faPlus} from "@fortawesome/free-solid-svg-icons";
 import ContentModal from "../modals/contentModal";
-import {StoreContext} from "../../../context/Store";
+import {StoreContext} from "../../../context/store";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import SuccessMessage from "../formMessages/successMessage";
 

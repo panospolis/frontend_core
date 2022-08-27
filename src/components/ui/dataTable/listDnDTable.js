@@ -5,7 +5,7 @@ import ListElements from "./components/listDnDComponents/listElements";
 import ListColumns from "./components/listDnDComponents/listColumns";
 import DataTable from './dataTable'
 import {ReactSortable} from "react-sortablejs";
-import {StoreContext} from "frontend-core/src/context/Store";
+import {StoreContext} from "frontend-core/src/context/store";
 import SmallInformationBox from "frontend-core/src/components/ui/smallInformationBox";
 
 @observer

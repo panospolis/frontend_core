@@ -1,7 +1,7 @@
 import React from "react";
 import {makeObservable, observable} from "mobx";
 import ReactECharts from 'echarts-for-react';
-import {StoreContext} from "../../../context/Store";
+import {StoreContext} from "../../../context/store";
 import PropTypes from "prop-types";
 
 
