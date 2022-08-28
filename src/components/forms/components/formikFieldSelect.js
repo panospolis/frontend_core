@@ -20,7 +20,7 @@ export const FormikFieldSelect = function (props) {
 
 
 }
-SelectField.defaultProps = {
+FormikFieldSelect.defaultProps = {
     selectClass: 'form-control',
     bodyClass: 'col-11'
 
