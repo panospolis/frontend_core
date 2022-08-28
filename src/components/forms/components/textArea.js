@@ -13,7 +13,7 @@ export default class TextArea extends React.Component {
     constructor(props) {
         super(props);
         makeObservable(this, {
-            status: observable
+            online: observable
         })
     }
 
