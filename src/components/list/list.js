@@ -1,7 +1,7 @@
 import React from "react";
-import Datatable from "../ui/datatable/datatable";
 import {makeObservable, observable, runInAction} from "mobx"
 import Section from "../sections/section";
+import DataTable from "../ui/dTable/dataTable";
 
 export default class List extends Section {
 
@@ -73,8 +73,8 @@ export default class List extends Section {
         return <div className="container">
             {this.header()}
             <div className="row">
-                <Datatable list={this.list} refresh_data={this.getData} config={this.getConfig().datatable}
-                           extraActions={this.actions} delete={this.delete}></Datatable>
+                <DataTable list={this.list} refresh_data={this.getData} config={this.getConfig().datatable}
+                           extraActions={this.actions} delete={this.delete}/>
             </div>
         </div>
     }

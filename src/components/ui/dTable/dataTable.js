@@ -19,7 +19,7 @@ class DataTable extends Component {
     static contextType = StoreContext
 
     list = [];
-    elements = {};
+    dtElements = {};
     filterFields = {};
     checkBoxes = [];
     showMessage = false;
@@ -38,7 +38,7 @@ class DataTable extends Component {
 
         makeObservable(this, {
             parameters: observable,
-            elements: observable,
+            dtElements: observable,
             list: observable,
             showMessage: observable
         });
@@ -192,7 +192,7 @@ class DataTable extends Component {
         return <div className="mt-3 col ">
 
             {this.props.showFilters && <Filters config={this.props.config} search={this.search} filterBy={this.filterBy}
-                                                elements={this.elements}/>}
+                                                dtElements={this.dtElements}/>}
             {this.showMessage && <div className={"row"}>
                 <div className={"col"}><SuccessMessage message={gettext('Record saved')}/></div>
             </div>}

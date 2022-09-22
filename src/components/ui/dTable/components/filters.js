@@ -25,7 +25,7 @@ class Filters extends Component {
                     <input type="text"
                            className="form-control"
                            placeholder={config.labels[idx]} name={field.name}
-                           value={this.props.elements[field]}
+                           value={this.props.dtElements[field]}
                            onChange={this.props.filterBy}/>
                 </div>)
             }
@@ -48,6 +48,6 @@ Filters.propTypes =
     {
         filterBy: PropTypes.func,
         search: PropTypes.func,
-        elements: PropTypes.object,
+        dtElements: PropTypes.object,
         config: PropTypes.object
     }

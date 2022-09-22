@@ -5,8 +5,8 @@ import ListElements from "./components/listDnDComponents/listElements";
 import ListColumns from "./components/listDnDComponents/listColumns";
 import DataTable from './dataTable'
 import {ReactSortable} from "react-sortablejs";
-import {StoreContext} from "frontend-core/src/context/store";
-import SmallInformationBox from "frontend-core/src/components/ui/smallInformationBox";
+import {StoreContext} from "../../../context/store";
+import SmallInformationBox from "../smallInformationBox";
 
 @observer
 export default class ListDnDTable extends DataTable {
