@@ -32,7 +32,7 @@ class Filters extends Component {
         });
 
         inputs.push(<div className="col" key="button">
-            <button className="btn btn-success" onClick={this.props.search}> search</button>
+            <button className="btn btn-success" onClick={this.props.search}>{gettext('search')}</button>
         </div>);
 
         return inputs;

@@ -20,7 +20,7 @@ export default class MultipleFieldsFormField extends React.Component {
         return <div className="row d-flex">
             <div className="col-3 ">
                 <ContainerWithInfoPopup id={this.props.id}>
-                <strong><label className="form-label">{gettext(this.props.name)}</label></strong>
+                <strong><label className="form-label">{this.props.name}</label></strong>
                 </ContainerWithInfoPopup>
             </div>
             <div className="col-9 ">
