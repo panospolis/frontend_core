@@ -42,7 +42,6 @@ export default class ConfirmationModal extends Component {
     render() {
         const {UIStore} = this.context.rootStore;
         const {title, message} = this.props;
-        console.log(this.checked);
         return <div className="modal-content">
             <div className="modal-header">
                 {title && <h5 className="modal-title">{title}</h5>}
