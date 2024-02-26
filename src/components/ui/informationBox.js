@@ -51,7 +51,7 @@ export default class InformationBox extends Component {
             <div className={`collapse ${show}`}>
                 <div className="card-body">
 
-                    {parse(this.props.content)}
+                    {parse(this.props.content.replace(/>\s+</g, '><'))}
                 </div>
             </div>
         </div>
