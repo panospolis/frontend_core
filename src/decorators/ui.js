@@ -28,7 +28,7 @@ export const checkModalConfirmation = (target, key, descriptor) => {
         const id = this.rootStore.UIStore.getAppId();
         const progressRecords = this.rootStore.ProgressStore.getProgressPerSection(id);
 
-        const filter = progressRecords?.filter(record => record.section === (args[0] - 1))
+        const filter = progressRecords?.filter(record => record.section === (args[0] -  - parseInt(this.rootStore.config.models['en']['step'])))
 
         if(!filter[0].modal) {
             const result = await originalMethod.apply(this, args);
