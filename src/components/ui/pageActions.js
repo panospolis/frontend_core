@@ -7,8 +7,8 @@ export default class PageActions extends Component {
     render() {
         return <div className={"row mt-1 buttons-actions"}>
             <div className={"col mr-3"}>
-                {this.props.print && <Print></Print>}
-                {this.props.upload && <Upload></Upload>}
+                {this.props.print && <Print tooltipPlacement={'bottom'}></Print>}
+                {this.props.upload && <Upload tooltipPlacement={'bottom'}></Upload>}
                 {this.props.children}
             </div>
         </div>
