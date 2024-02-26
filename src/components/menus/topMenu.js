@@ -29,7 +29,7 @@ export default class TopMenu extends Component {
                 const first = sections.shift();
                 if (parseInt(first) > progress) {
                     activeMenu = "bg-dark";
-                } else if (p.section_id.split(',').some(i => parseInt(i) === parseInt(progress))) {
+                } else if (p.section_id.split(',').some(i => parseInt(i) === parseInt(progress)) && this.context.rootStore.config.models[UIStore.getLanguage()]['lastSectionId'] !== parseInt(progress)) {
                     activeMenu = "bg-secondary";
                 } else {
                     activeMenu = "bg-success";
