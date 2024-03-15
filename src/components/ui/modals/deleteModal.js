@@ -1,10 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ConfirmationModal from "./confirmationModal";
-import {observer} from "mobx-react";
 
-@observer
-export default class DeleteModal extends ConfirmationModal.WrappedComponent {
+export default class DeleteModal extends ConfirmationModal {
 
     onConfirm() {
         const {UIStore} = this.context.rootStore;
