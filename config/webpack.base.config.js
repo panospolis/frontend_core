@@ -29,5 +29,7 @@ module.exports = {
             template: './../templates/frontend/index.html',
             filename: './index.html'
         })
-    ]
+    ],stats: {
+        children: true, // Enable detailed output for child compilations
+    },
 }
