@@ -45,7 +45,7 @@ export default class CsStore {
         const options = {
             method: 'POST',
             headers: {...this.formHeaders()},
-            url: `/${this.rootStore.config.app_name}/current/language`
+            url: `/${this.rootStore.config.app_name}/current/language/`
         };
         const language = await axios(options);
 
@@ -60,7 +60,7 @@ export default class CsStore {
                 method: 'POST',
                 headers: {...this.formHeaders()},
                 data: qs.stringify({'language': lang}),
-                url: `/${this.rootStore.config.app_name}/i18n/setlang`
+                url: `/${this.rootStore.config.app_name}/i18n/setlang/`
             };
             language = await axios(options);
 
@@ -80,7 +80,7 @@ export default class CsStore {
             const options = {
                 method: 'GET',
                 headers: {...this.formHeaders()},
-                url: `/${this.rootStore.config.app_name}/open_app`
+                url: `/${this.rootStore.config.app_name}/open_app/`
             };
             data = await axios(options);
 
@@ -97,7 +97,7 @@ export default class CsStore {
             const options = {
                 method: 'POST',
                 headers: {...this.formHeaders()},
-                url: `/${this.rootStore.config.app_name}/api/logger/download`
+                url: `/${this.rootStore.config.app_name}/api/logger/download/`
             };
             logFile = await axios(options);
 
@@ -114,7 +114,7 @@ export default class CsStore {
                 method: 'POST',
                 headers: {...this.formHeaders()},
                 data: qs.stringify(parameters),
-                url: `${this.url}/logger`
+                url: `${this.url}/logger/`
             };
             errors = await axios(options);
 
@@ -128,7 +128,7 @@ export default class CsStore {
         let config = null;
 
         try {
-            config = await axios.get(`${this.url}/config`, {}, {
+            config = await axios.get(`${this.url}/config/`, {}, {
                 headers: {
                     ...this.formHeaders()
                 },
@@ -149,7 +149,7 @@ export default class CsStore {
     async addProgressStep(parameters = null) {
         let data = null;
         try {
-            data = await axios.post(`${this.url}/progress/save`, parameters, {
+            data = await axios.post(`${this.url}/progress/save/`, parameters, {
 
                 headers: {
                     ...this.formHeaders(),
@@ -172,7 +172,7 @@ export default class CsStore {
     async updateProgressStep(id, parameters = null) {
         let data = null;
         try {
-            data = await axios.post(`${this.url}/progress/${id}/update`, parameters, {
+            data = await axios.post(`${this.url}/progress/${id}/update/`, parameters, {
                 headers: {
                     ...this.formHeaders(),
                 }
@@ -193,7 +193,7 @@ export default class CsStore {
     async deleteProgress(id, progress_id) {
         let data = null;
         try {
-            data = await axios.post(`${this.url}/${id}/progress/${progress_id}/delete`, {},{
+            data = await axios.post(`${this.url}/${id}/progress/${progress_id}/delete/`, {},{
                 headers: {
                     ...this.formHeaders(),
                 },
@@ -214,7 +214,7 @@ export default class CsStore {
     async getProgress(id) {
         let data = {data: null};
         try {
-            data = await axios.get(`${this.url}/${id}/progress`, {
+            data = await axios.get(`${this.url}/${id}/progress/`, {
                 headers: {
                     ...this.formHeaders(),
                 },
@@ -234,7 +234,7 @@ export default class CsStore {
     async getAllProgress() {
         let data = {data: null};
         try {
-            data = await axios.get(`${this.url}/progress`, {
+            data = await axios.get(`${this.url}/progress/`, {
                 headers: {
                     ...this.formHeaders(),
                 },
@@ -256,7 +256,7 @@ export default class CsStore {
         let data = {data: null};
 
         try {
-            data = await axios.get(`${this.url}/${this.rootStore.config.app_name}/${id}`, {
+            data = await axios.get(`${this.url}/${this.rootStore.config.app_name}/${id}/`, {
                 headers: {
                     ...this.formHeaders(),
                 },
@@ -277,7 +277,7 @@ export default class CsStore {
     async getWdpa(parameters = null) {
         let data = null;
         try {
-            data = await axios.post(`${this.url}/wdpa`, parameters, {
+            data = await axios.post(`${this.url}/wdpa/`, parameters, {
 
                 headers: {
                     ...this.formHeaders(),
@@ -299,7 +299,7 @@ export default class CsStore {
     async getGuidance(lang) {
         let data = {data: null};
         try {
-            data = await axios.get(`${this.url}/guidance/${lang}`, {
+            data = await axios.get(`${this.url}/guidance/${lang}/`, {
                 headers: {
                     ...this.formHeaders(),
                 },
